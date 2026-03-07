@@ -50,7 +50,7 @@ export default function DPTracker() {
   const totalProblems = useMemo(()=>Object.values(DP_DATA).reduce((a,b)=>a+b.length,0),[]);
   const solvedCount = useMemo(()=>Object.values(progress).filter(v=>v===1).length,[progress]);
   const reviewCount = useMemo(()=>Object.values(progress).filter(v=>v===2).length,[progress]);
-  const globalPct = Math.round((solvedCount/totalProblems)*100);
+  const globalPct = Math.round(((solvedCount + reviewCount)/totalProblems)*100);
 
   function cycleStatus(slug) {
     setProgress(prev => {
@@ -70,7 +70,7 @@ export default function DPTracker() {
     const ps = DP_DATA[cat];
     const solved = ps.filter(s=>(progress[s]||0)===1).length;
     const review = ps.filter(s=>(progress[s]||0)===2).length;
-    return { solved, review, total:ps.length, pct:Math.round((solved/ps.length)*100) };
+    return { solved, review, total:ps.length, pct:Math.round(((solved + review)/ps.length)*100) };
   }
 
   const filteredProblems = useMemo(()=>{
@@ -128,7 +128,7 @@ export default function DPTracker() {
                 <span style={{fontSize:"clamp(40px,6vw,56px)",fontWeight:"900",color:"#00ffa3",lineHeight:1,textShadow:"0 0 30px rgba(0,255,163,0.3)"}}>{globalPct}%</span>
                 <div style={{display:"flex",flexDirection:"column",gap:"2px"}}>
                   <span style={{fontSize:"13px",color:"#555"}}>complete</span>
-                  <span style={{fontSize:"11px",color:"#333"}}>{solvedCount} / {totalProblems}</span>
+                  <span style={{fontSize:"11px",color:"#333"}}>{(solvedCount + reviewCount)} / {totalProblems}</span>
                 </div>
               </div>
               <div style={{height:"8px",background:"rgba(255,255,255,0.05)",borderRadius:"4px",overflow:"hidden"}}>
