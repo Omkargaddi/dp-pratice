@@ -21,234 +21,672 @@ const DP_DATA = {
   "Graph DP": ["cheapest-flights-within-k-stops","find-the-shortest-superstring"],
   "Memoization": ["minimum-jumps-to-reach-home","scramble-string","tiling-a-rectangle-with-the-fewest-squares","number-of-ways-to-stay-in-the-same-place-after-some-steps","jump-game-v","minimum-number-of-days-to-eat-n-oranges"],
   "Binary Lifting": ["kth-ancestor-of-a-tree-node"],
-  "Math DP": ["ugly-number-ii","count-sorted-vowel-strings","race-car","super-egg-drop","least-operators-to-express-number","largest-multiple-of-three","minimum-one-bit-operations-to-make-integers-zero"]
+  "Math DP": ["ugly-number-ii","count-sorted-vowel-strings","race-car","super-egg-drop","least-operators-to-express-number","largest-multiple-of-three","minimum-one-bit-operations-to-make-integers-zero"],
 };
 
-const STORAGE_KEY = "dp_tracker_v1";
-function slugToTitle(slug) { return slug.split("-").map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(" "); }
+const STRUCTURED_DATA = {
+  "Linked List": {
+    sections: [
+      { title: "Design", problems: [
+        { id: "ll-1", title: "Design Linked List", slug: "design-linked-list", difficulty: "Medium" },
+      ]},
+      { title: "Normal Recursion (Given 1 LL)", note: "Simple Recursion — Nothing else", problems: [
+        { id: "ll-2", title: "Swapping Nodes in a Linked List", slug: "swapping-nodes-in-a-linked-list", difficulty: "Medium" },
+        { id: "ll-3", title: "Plus One Linked List", slug: "plus-one-linked-list", difficulty: "Medium" },
+        { id: "ll-4", title: "Convert Binary Number in a Linked List to Integer", slug: "convert-binary-number-in-a-linked-list-to-integer", difficulty: "Easy" },
+      ]},
+      { title: "Modifying the LL (same number of nodes)", problems: [] },
+      { title: "Reversing the Linked List", problems: [
+        { id: "ll-5", title: "Reverse Linked List", slug: "reverse-linked-list", difficulty: "Easy" },
+        { id: "ll-6", title: "Reverse Linked List II", slug: "reverse-linked-list-ii", difficulty: "Medium" },
+        { id: "ll-7", title: "Palindrome Linked List", slug: "palindrome-linked-list", difficulty: "Easy" },
+        { id: "ll-8", title: "Reverse Nodes in K-Group", slug: "reverse-nodes-in-k-group", difficulty: "Hard" },
+        { id: "ll-9", title: "Print Immutable Linked List in Reverse", slug: "print-immutable-linked-list-in-reverse", difficulty: "Medium" },
+      ]},
+      { title: "Reordering the Nodes", problems: [
+        { id: "ll-10", title: "Partition List", slug: "partition-list", difficulty: "Medium", important: true },
+        { id: "ll-11", title: "Reorder List", slug: "reorder-list", difficulty: "Medium" },
+        { id: "ll-12", title: "Swap Nodes in Pairs", slug: "swap-nodes-in-pairs", difficulty: "Medium" },
+        { id: "ll-13", title: "Rotate List", slug: "rotate-list", difficulty: "Medium" },
+        { id: "ll-14", title: "Odd Even Linked List", slug: "odd-even-linked-list", difficulty: "Medium" },
+      ]},
+      { title: "Delete Nodes", problems: [
+        { id: "ll-15", title: "Remove Nth Node From End of List", slug: "remove-nth-node-from-end-of-list", difficulty: "Medium" },
+        { id: "ll-16", title: "Remove Duplicates from Sorted List", slug: "remove-duplicates-from-sorted-list", difficulty: "Easy", note: "Unsorted → use HashMap" },
+        { id: "ll-17", title: "Remove Duplicates from Sorted List II", slug: "remove-duplicates-from-sorted-list-ii", difficulty: "Medium" },
+        { id: "ll-18", title: "Remove Linked List Elements", slug: "remove-linked-list-elements", difficulty: "Easy" },
+      ]},
+      { title: "Insert Node", problems: [
+        { id: "ll-19", title: "Insert into a Sorted Circular Linked List", slug: "insert-into-a-sorted-circular-linked-list", difficulty: "Medium" },
+      ]},
+      { title: "Given 2 or More LL", problems: [
+        { id: "ll-20", title: "Add Two Numbers", slug: "add-two-numbers", difficulty: "Medium" },
+        { id: "ll-21", title: "Add Two Numbers II", slug: "add-two-numbers-ii", difficulty: "Medium" },
+        { id: "ll-22", title: "Merge Two Sorted Lists", slug: "merge-two-sorted-lists", difficulty: "Easy" },
+        { id: "ll-23", title: "Merge K Sorted Lists", slug: "merge-k-sorted-lists", difficulty: "Hard", important: true },
+        { id: "ll-24", title: "Intersection of Two Linked Lists", slug: "intersection-of-two-linked-lists", difficulty: "Easy" },
+        { id: "ll-25", title: "Add Two Polynomials Represented as Linked Lists", slug: "add-two-polynomials-represented-as-linked-lists", difficulty: "Medium" },
+      ]},
+      { title: "Fast / Slow Pointer (Cycle or Middle)", problems: [
+        { id: "ll-26", title: "Linked List Cycle", slug: "linked-list-cycle", difficulty: "Easy" },
+        { id: "ll-27", title: "Middle of the Linked List", slug: "middle-of-the-linked-list", difficulty: "Easy" },
+        { id: "ll-28", title: "Delete the Middle Node of a Linked List", slug: "delete-the-middle-node-of-a-linked-list", difficulty: "Medium" },
+        { id: "ll-29", title: "Linked List Cycle II", slug: "linked-list-cycle-ii", difficulty: "Medium" },
+      ]},
+      { title: "Hash Table", problems: [
+        { id: "ll-30", title: "Copy List with Random Pointer", slug: "copy-list-with-random-pointer", difficulty: "Medium", important: true },
+        { id: "ll-31", title: "Remove Duplicates from an Unsorted Linked List", slug: "remove-duplicates-from-an-unsorted-linked-list", difficulty: "Medium", note: "Sorted → no hash table needed" },
+      ]},
+      { title: "Design Data Structure using LL", problems: [
+        { id: "ll-32", title: "LRU Cache", slug: "lru-cache", difficulty: "Medium" },
+        { id: "ll-33", title: "Design HashMap", slug: "design-hashmap", difficulty: "Easy" },
+        { id: "ll-34", title: "Max Stack", slug: "max-stack", difficulty: "Hard" },
+        { id: "ll-35", title: "Design HashSet", slug: "design-hashset", difficulty: "Easy" },
+        { id: "ll-36", title: "Design Browser History", slug: "design-browser-history", difficulty: "Medium", note: "Stack-based" },
+        { id: "ll-37", title: "Design Twitter", slug: "design-twitter", difficulty: "Medium", note: "No need of LL" },
+        { id: "ll-38", title: "Design Circular Queue", slug: "design-circular-queue", difficulty: "Medium" },
+      ]},
+      { title: "Merge Sort on List", problems: [
+        { id: "ll-39", title: "Sort List", slug: "sort-list", difficulty: "Medium" },
+      ]},
+      { title: "LL + Tree", problems: [
+        { id: "ll-40", title: "Convert BST to Sorted Doubly Linked List", slug: "convert-binary-search-tree-to-sorted-doubly-linked-list", difficulty: "Medium" },
+        { id: "ll-41", title: "Flatten a Multilevel Doubly Linked List", slug: "flatten-a-multilevel-doubly-linked-list", difficulty: "Medium" },
+        { id: "ll-42", title: "Maximum Twin Sum of a Linked List", slug: "maximum-twin-sum-of-a-linked-list", difficulty: "Medium" },
+        { id: "ll-43", title: "Delete Node in a Linked List", slug: "delete-node-in-a-linked-list", difficulty: "Medium" },
+      ]},
+      { title: "To Do", problems: [
+        { id: "ll-44", title: "All O'one Data Structure", slug: "all-oone-data-structure", difficulty: "Hard" },
+        { id: "ll-45", title: "LFU Cache", slug: "lfu-cache", difficulty: "Hard" },
+        { id: "ll-46", title: "Design a Text Editor", slug: "design-a-text-editor", difficulty: "Hard" },
+      ]},
+    ],
+  },
+  "Binary Tree": {
+    sections: [
+      { title: "Binary Tree Problems", problems: [
+        { id: "bt-1",  title: "Invert Binary Tree", slug: "invert-binary-tree", difficulty: "Easy" },
+        { id: "bt-2",  title: "Convert Sorted Array to Binary Search Tree", slug: "convert-sorted-array-to-binary-search-tree", difficulty: "Easy" },
+        { id: "bt-3",  title: "Count Complete Tree Nodes", slug: "count-complete-tree-nodes", difficulty: "Medium" },
+        { id: "bt-4",  title: "All Possible Full Binary Trees", slug: "all-possible-full-binary-trees", difficulty: "Medium" },
+        { id: "bt-5",  title: "Delete Leaves With a Given Value", slug: "delete-leaves-with-a-given-value", difficulty: "Medium" },
+        { id: "bt-6",  title: "Binary Search Tree Iterator", slug: "binary-search-tree-iterator", difficulty: "Medium" },
+        { id: "bt-7",  title: "Longest Univalue Path", slug: "longest-univalue-path", difficulty: "Medium" },
+        { id: "bt-8",  title: "Delete Nodes And Return Forest", slug: "delete-nodes-and-return-forest", difficulty: "Medium" },
+        { id: "bt-9",  title: "Validate Binary Search Tree", slug: "validate-binary-search-tree", difficulty: "Medium" },
+        { id: "bt-10", title: "Construct Binary Tree from Inorder and Postorder Traversal", slug: "construct-binary-tree-from-inorder-and-postorder-traversal", difficulty: "Medium" },
+        { id: "bt-11", title: "All Nodes Distance K in Binary Tree", slug: "all-nodes-distance-k-in-binary-tree", difficulty: "Medium" },
+        { id: "bt-12", title: "Maximum Difference Between Node and Ancestor", slug: "maximum-difference-between-node-and-ancestor", difficulty: "Medium" },
+        { id: "bt-13", title: "Find Duplicate Subtrees", slug: "find-duplicate-subtrees", difficulty: "Medium" },
+        { id: "bt-14", title: "Flatten Binary Tree to Linked List", slug: "flatten-binary-tree-to-linked-list", difficulty: "Medium" },
+        { id: "bt-15", title: "House Robber III", slug: "house-robber-iii", difficulty: "Medium" },
+        { id: "bt-16", title: "Step-By-Step Directions From a Binary Tree Node to Another", slug: "step-by-step-directions-from-a-binary-tree-node-to-another", difficulty: "Medium" },
+        { id: "bt-17", title: "Delete Node in a BST", slug: "delete-node-in-a-bst", difficulty: "Medium" },
+        { id: "bt-18", title: "Populating Next Right Pointers in Each Node II", slug: "populating-next-right-pointers-in-each-node-ii", difficulty: "Medium" },
+        { id: "bt-19", title: "Trim a Binary Search Tree", slug: "trim-a-binary-search-tree", difficulty: "Medium" },
+        { id: "bt-20", title: "Distribute Coins in Binary Tree", slug: "distribute-coins-in-binary-tree", difficulty: "Medium" },
+        { id: "bt-21", title: "Binary Search Tree to Greater Sum Tree", slug: "binary-search-tree-to-greater-sum-tree", difficulty: "Medium" },
+        { id: "bt-22", title: "Serialize and Deserialize Binary Tree", slug: "serialize-and-deserialize-binary-tree", difficulty: "Hard" },
+        { id: "bt-23", title: "Binary Tree Cameras", slug: "binary-tree-cameras", difficulty: "Hard" },
+        { id: "bt-24", title: "Binary Tree Maximum Path Sum", slug: "binary-tree-maximum-path-sum", difficulty: "Hard" },
+        { id: "bt-25", title: "Maximum Sum BST in Binary Tree", slug: "maximum-sum-bst-in-binary-tree", difficulty: "Hard" },
+      ]},
+    ],
+  },
+};
+
+// ─── THEME ────────────────────────────────────────────────────────────────────
+const T = {
+  // Backgrounds
+  bg:         "#0d1117",
+  bgNav:      "#111827",
+  bgCard:     "#161d2e",
+  bgCardHov:  "#1a2236",
+  bgInset:    "#0a0f1a",
+  bgPanel:    "#131929",
+
+  // Blue accent
+  blue:       "#4d9fff",
+  blueLight:  "#7ab8ff",
+  blueDim:    "rgba(77,159,255,0.12)",
+  blueBorder: "rgba(77,159,255,0.25)",
+
+  // Orange accent
+  orange:     "#ff8c42",
+  orangeLight:"#ffaa6e",
+  orangeDim:  "rgba(255,140,66,0.12)",
+  orangeBorder:"rgba(255,140,66,0.25)",
+
+  // Text
+  textPrimary:   "#e8edf5",
+  textSecondary: "#8896aa",
+  textMuted:     "#3d4f68",
+  textFaint:     "#1e2c40",
+
+  // Borders
+  border:     "rgba(255,255,255,0.06)",
+  borderMed:  "rgba(255,255,255,0.1)",
+
+  // Status
+  solved:     "#4d9fff",
+  review:     "#ff8c42",
+  unsolved:   "#2a3a52",
+
+  // Difficulty
+  easy:   { bg: "rgba(52,199,89,0.08)",   color: "#34c759", border: "rgba(52,199,89,0.2)" },
+  medium: { bg: "rgba(255,204,0,0.08)",   color: "#ffcc00", border: "rgba(255,204,0,0.2)" },
+  hard:   { bg: "rgba(255,69,58,0.08)",   color: "#ff453a", border: "rgba(255,69,58,0.2)" },
+};
+
+// DP category palette — cool blues + warm oranges
+const DP_CAT_COLORS = [
+  "#4d9fff","#ff8c42","#60b4ff","#ffaa6e","#38bdf8","#fb923c",
+  "#7dd3fc","#fed7aa","#3b82f6","#f97316","#60a5fa","#fdba74",
+  "#93c5fd","#ff8c42","#bfdbfe","#4d9fff","#0ea5e9","#ff7c20",
+  "#06b6d4","#ffa040","#22d3ee","#ff6b00",
+];
+
+const STORAGE_KEY = "dsa_tracker_navy_v1";
+
+const STATUS_ICONS  = ["○", "✓", "↻"];
+const STATUS_LABELS = ["Unsolved", "Solved", "Review"];
+const STATUS_COLORS = [T.unsolved, T.solved, T.review];
+
+const TOPICS = {
+  "Dynamic Programming": { color: T.blue,   icon: "∑",  type: "dp" },
+  "Linked List":         { color: T.orange, icon: "⟳",  type: "structured" },
+  "Binary Tree":         { color: T.blue,   icon: "⌥",  type: "structured" },
+};
+
+const DIFF_STYLE = {
+  Easy:   T.easy,
+  Medium: T.medium,
+  Hard:   T.hard,
+};
+
+function slugToTitle(slug) {
+  return slug.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+}
 function getLCUrl(slug) { return `https://leetcode.com/problems/${slug}/`; }
-function hexToRgb(hex) { const h=hex.replace("#",""); const b=parseInt(h,16); return `${(b>>16)&255},${(b>>8)&255},${b&255}`; }
 
-const CATEGORY_COLORS = ["#00ffa3","#00c8ff","#ff6b6b","#ffd93d","#c77dff","#ff9f43","#54a0ff","#b8e994","#ff6b9d","#00d2d3","#1dd1a1","#ee5a24","#0abde3","#f368e0","#ffdd59","#48dbfb","#a29bfe","#feca57","#1abc9c","#fd79a8","#74b9ff"];
-const STATUS_ICONS = ["○","✓","↻"];
-const STATUS_LABELS = ["Unsolved","Solved","Review"];
-const STATUS_COLORS = ["#2e2e40","#00ffa3","#ffd93d"];
-
-export default function DPTracker() {
+// ─── MAIN ─────────────────────────────────────────────────────────────────────
+export default function DSAMasterTracker() {
   const [progress, setProgress] = useState(() => {
-    try { const s=localStorage.getItem(STORAGE_KEY); return s?JSON.parse(s):{}; } catch { return {}; }
+    try { const s = localStorage.getItem(STORAGE_KEY); return s ? JSON.parse(s) : {}; } catch { return {}; }
   });
+  const [activeTopic, setActiveTopic]       = useState("Dynamic Programming");
   const [activeCategory, setActiveCategory] = useState(null);
-  const [search, setSearch] = useState("");
-  const [filterStatus, setFilterStatus] = useState("all");
-  const [confetti, setConfetti] = useState(false);
-  const [prevSolved, setPrevSolved] = useState(0);
+  const [activeSection, setActiveSection]   = useState(null);
+  const [search, setSearch]                 = useState("");
+  const [filterStatus, setFilterStatus]     = useState("all");
+  const [noteModal, setNoteModal]           = useState(null);
+  const [noteText, setNoteText]             = useState("");
+  const [confetti, setConfetti]             = useState(false);
+  const [prevSolved, setPrevSolved]         = useState(0);
 
-  useEffect(() => { try { localStorage.setItem(STORAGE_KEY,JSON.stringify(progress)); } catch {} }, [progress]);
+  useEffect(() => { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); } catch {} }, [progress]);
 
-  const categories = Object.keys(DP_DATA);
-  const totalProblems = useMemo(()=>Object.values(DP_DATA).reduce((a,b)=>a+b.length,0),[]);
-  const solvedCount = useMemo(()=>Object.values(progress).filter(v=>v===1).length,[progress]);
-  const reviewCount = useMemo(()=>Object.values(progress).filter(v=>v===2).length,[progress]);
-  const globalPct = Math.round(((solvedCount + reviewCount)/totalProblems)*100);
-
-  function cycleStatus(slug) {
+  function cycleStatus(key) {
     setProgress(prev => {
-      const cur = prev[slug]||0;
-      const next = (cur+1)%3;
-      const updated = {...prev,[slug]:next};
-      if (next===1) {
-        const ns = Object.values(updated).filter(v=>v===1).length;
-        if (ns%10===0 && ns>prevSolved) { setConfetti(true); setTimeout(()=>setConfetti(false),2500); }
+      const cur  = prev[key] || 0;
+      const next = (cur + 1) % 3;
+      const updated = { ...prev, [key]: next };
+      if (next === 1) {
+        const ns = Object.values(updated).filter(v => v === 1).length;
+        if (ns % 10 === 0 && ns > prevSolved) { setConfetti(true); setTimeout(() => setConfetti(false), 2500); }
         setPrevSolved(ns);
       }
       return updated;
     });
   }
 
-  function getCatStats(cat) {
-    const ps = DP_DATA[cat];
-    const solved = ps.filter(s=>(progress[s]||0)===1).length;
-    const review = ps.filter(s=>(progress[s]||0)===2).length;
-    return { solved, review, total:ps.length, pct:Math.round(((solved + review)/ps.length)*100) };
+  const NOTE_KEY = k => `__note__${k}`;
+  const getNote  = k => progress[NOTE_KEY(k)] || "";
+  function saveNote() {
+    if (!noteModal) return;
+    setProgress(prev => ({ ...prev, [NOTE_KEY(noteModal)]: noteText }));
+    setNoteModal(null);
+  }
+  function openNote(k) { setNoteModal(k); setNoteText(getNote(k)); }
+
+  const allKeys = useMemo(() => {
+    const keys = [];
+    Object.values(DP_DATA).forEach(arr => arr.forEach(s => keys.push(s)));
+    Object.values(STRUCTURED_DATA).forEach(td => td.sections.forEach(sec => sec.problems.forEach(p => keys.push(p.id))));
+    return keys;
+  }, []);
+
+  const globalStats = useMemo(() => {
+    const solved = allKeys.filter(k => (progress[k] || 0) === 1).length;
+    const review = allKeys.filter(k => (progress[k] || 0) === 2).length;
+    const total  = allKeys.length;
+    return { solved, review, total, pct: Math.round(((solved + review) / total) * 100) };
+  }, [progress, allKeys]);
+
+  const topicStats = useMemo(() => {
+    const out = {};
+    let dpTotal = 0, dpSolved = 0, dpReview = 0;
+    Object.values(DP_DATA).forEach(arr => arr.forEach(s => {
+      dpTotal++;
+      const v = progress[s] || 0;
+      if (v === 1) dpSolved++;
+      if (v === 2) dpReview++;
+    }));
+    out["Dynamic Programming"] = { total: dpTotal, solved: dpSolved, review: dpReview };
+    Object.entries(STRUCTURED_DATA).forEach(([topic, td]) => {
+      let total = 0, solved = 0, review = 0;
+      td.sections.forEach(sec => sec.problems.forEach(p => {
+        total++;
+        const v = progress[p.id] || 0;
+        if (v === 1) solved++;
+        if (v === 2) review++;
+      }));
+      out[topic] = { total, solved, review };
+    });
+    return out;
+  }, [progress]);
+
+  function getDPCatStats(cat) {
+    const ps     = DP_DATA[cat];
+    const solved = ps.filter(s => (progress[s] || 0) === 1).length;
+    const review = ps.filter(s => (progress[s] || 0) === 2).length;
+    return { solved, review, total: ps.length, pct: Math.round(((solved + review) / ps.length) * 100) };
   }
 
-  const filteredProblems = useMemo(()=>{
+  const filteredDP = useMemo(() => {
     if (!activeCategory) return [];
-    return DP_DATA[activeCategory].filter(slug=>{
-      const ms = !search||slugToTitle(slug).toLowerCase().includes(search.toLowerCase())||slug.includes(search.toLowerCase());
-      const mf = filterStatus==="all"||(progress[slug]||0)===Number(filterStatus);
-      return ms&&mf;
+    return DP_DATA[activeCategory].filter(slug => {
+      const ms = !search || slugToTitle(slug).toLowerCase().includes(search.toLowerCase()) || slug.includes(search.toLowerCase());
+      const mf = filterStatus === "all" || (progress[slug] || 0) === Number(filterStatus);
+      return ms && mf;
     });
-  },[activeCategory,search,filterStatus,progress]);
+  }, [activeCategory, search, filterStatus, progress]);
 
-  const catIdx = activeCategory ? categories.indexOf(activeCategory) : 0;
-  const activeCatColor = CATEGORY_COLORS[catIdx % CATEGORY_COLORS.length];
+  const filteredSections = useMemo(() => {
+    if (activeTopic === "Dynamic Programming") return [];
+    const td = STRUCTURED_DATA[activeTopic];
+    if (!td) return [];
+    return td.sections.map(sec => ({
+      ...sec,
+      problems: sec.problems.filter(p => {
+        const ms = !search || p.title.toLowerCase().includes(search.toLowerCase());
+        const mf = filterStatus === "all" || (progress[p.id] || 0) === Number(filterStatus);
+        return ms && mf;
+      }),
+    })).filter(sec => sec.problems.length > 0 || !search);
+  }, [activeTopic, search, filterStatus, progress]);
 
+  const topicColor = TOPICS[activeTopic]?.color || T.blue;
+  const dpCatColor = activeCategory
+    ? DP_CAT_COLORS[Object.keys(DP_DATA).indexOf(activeCategory) % DP_CAT_COLORS.length]
+    : T.blue;
+
+  // ─── RENDER ────────────────────────────────────────────────────────────────
   return (
-    <div style={{minHeight:"100vh",background:"#07070f",color:"#ddd",fontFamily:"'Courier New',Courier,monospace",position:"relative",overflowX:"hidden"}}>
+    <div style={{ minHeight: "100vh", background: T.bg, color: T.textPrimary, fontFamily: "'DM Sans', 'Segoe UI', sans-serif", position: "relative", overflowX: "hidden" }}>
       <style>{`
-        *{box-sizing:border-box;margin:0;padding:0}
-        ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#111}::-webkit-scrollbar-thumb{background:#1e1e2e;border-radius:3px}
-        .catbtn:hover{filter:brightness(1.3)!important;transform:translateX(2px)}
-        .probrow:hover{background:rgba(255,255,255,0.04)!important}
-        .lclink:hover{color:#fff!important;text-decoration:underline!important}
-        @keyframes pop{0%{transform:scale(0);opacity:1}60%{transform:scale(2.5);opacity:1}100%{transform:scale(4);opacity:0}}
-        @keyframes fin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-        input:focus{border-color:rgba(255,255,255,0.2)!important;outline:none}
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #1e2c40; border-radius: 4px; }
+        .cat-btn:hover { background: rgba(77,159,255,0.07) !important; border-color: rgba(77,159,255,0.3) !important; }
+        .prob-row:hover { background: #1a2236 !important; }
+        .lc-link:hover { color: #fff !important; }
+        .topic-btn:hover { filter: brightness(1.08); }
+        .note-btn:hover { color: ${T.textSecondary} !important; }
+        .sec-nav-btn:hover { background: rgba(255,255,255,0.04) !important; color: ${T.textSecondary} !important; }
+        .filter-btn:hover { border-color: rgba(255,255,255,0.15) !important; }
+        @keyframes pop { 0%{transform:scale(0);opacity:1} 60%{transform:scale(2.5);opacity:1} 100%{transform:scale(4);opacity:0} }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+        @keyframes slideIn { from{opacity:0;transform:translateX(-4px)} to{opacity:1;transform:none} }
+        @keyframes shimmer { 0%{opacity:0.5} 50%{opacity:1} 100%{opacity:0.5} }
+        input:focus, textarea:focus { outline: none; border-color: rgba(77,159,255,0.4) !important; box-shadow: 0 0 0 3px rgba(77,159,255,0.08) !important; }
+        .reset-btn:hover { color: rgba(255,80,80,0.6) !important; border-color: rgba(255,80,80,0.25) !important; }
       `}</style>
 
-      {/* BG grid */}
-      <div style={{position:"fixed",inset:0,zIndex:0,backgroundImage:"linear-gradient(rgba(0,255,163,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,163,0.022) 1px,transparent 1px)",backgroundSize:"44px 44px",pointerEvents:"none"}}/>
-      <div style={{position:"fixed",top:"-250px",right:"-150px",width:"600px",height:"600px",background:"radial-gradient(circle,rgba(0,200,255,0.07) 0%,transparent 65%)",borderRadius:"50%",pointerEvents:"none",zIndex:0}}/>
-      <div style={{position:"fixed",bottom:"-150px",left:"-100px",width:"500px",height:"500px",background:"radial-gradient(circle,rgba(0,255,163,0.05) 0%,transparent 65%)",borderRadius:"50%",pointerEvents:"none",zIndex:0}}/>
+      {/* Subtle grid */}
+      <div style={{ position: "fixed", inset: 0, zIndex: 0, backgroundImage: `linear-gradient(rgba(77,159,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(77,159,255,0.015) 1px,transparent 1px)`, backgroundSize: "48px 48px", pointerEvents: "none" }} />
+      {/* Glow orbs */}
+      <div style={{ position: "fixed", top: "-200px", right: "-100px", width: "500px", height: "500px", background: "radial-gradient(circle,rgba(77,159,255,0.06) 0%,transparent 65%)", borderRadius: "50%", pointerEvents: "none", zIndex: 0 }} />
+      <div style={{ position: "fixed", bottom: "-150px", left: "-80px", width: "400px", height: "400px", background: "radial-gradient(circle,rgba(255,140,66,0.05) 0%,transparent 65%)", borderRadius: "50%", pointerEvents: "none", zIndex: 0 }} />
 
       {confetti && (
-        <div style={{position:"fixed",inset:0,zIndex:9999,pointerEvents:"none",display:"flex",alignItems:"center",justifyContent:"center"}}>
-          <div style={{fontSize:"80px",animation:"pop 2.5s ease forwards"}}>🎉</div>
+        <div style={{ position: "fixed", inset: 0, zIndex: 9999, pointerEvents: "none", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ fontSize: "80px", animation: "pop 2.5s ease forwards" }}>🎉</div>
         </div>
       )}
 
-      <div style={{position:"relative",zIndex:1,maxWidth:"1440px",margin:"0 auto",padding:"clamp(20px,4vw,40px) clamp(16px,3vw,32px)"}}>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: "1480px", margin: "0 auto", padding: "clamp(20px,4vw,40px) clamp(16px,3vw,32px)" }}>
 
-        {/* HEADER */}
-        <div style={{marginBottom:"36px"}}>
-          <div style={{fontSize:"10px",letterSpacing:"5px",color:"#00ffa3",textTransform:"uppercase",marginBottom:"8px",opacity:0.8}}>Dynamic Programming</div>
-          <h1 style={{fontSize:"clamp(30px,5vw,58px)",fontWeight:"900",letterSpacing:"-2px",color:"#fff",lineHeight:1,marginBottom:"8px"}}>
-            PROGRESS<span style={{color:"#00ffa3"}}>_</span>TRACKER
-          </h1>
-          <p style={{fontSize:"11px",color:"#333",letterSpacing:"3px"}}>{totalProblems} PROBLEMS · {categories.length} CATEGORIES</p>
+        {/* ── HEADER ── */}
+        <div style={{ marginBottom: "32px", display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "16px" }}>
+          <div>
+            <div style={{ fontSize: "10px", letterSpacing: "4px", color: T.blue, textTransform: "uppercase", marginBottom: "10px", fontFamily: "'DM Mono', monospace", opacity: 0.7 }}>Personal DSA Tracker</div>
+            <h1 style={{ fontSize: "clamp(30px,5vw,52px)", fontWeight: "700", letterSpacing: "-1.5px", color: T.textPrimary, lineHeight: 1.05, marginBottom: "6px" }}>
+              Algo<span style={{ color: T.orange }}>.</span>Grind
+            </h1>
+            <p style={{ fontSize: "12px", color: T.textMuted, letterSpacing: "1.5px", fontFamily: "'DM Mono', monospace" }}>{globalStats.total} problems · {Object.keys(TOPICS).length} topics</p>
+          </div>
+          {/* Mini legend */}
+          <div style={{ display: "flex", gap: "16px", fontSize: "11px", color: T.textMuted, alignItems: "center", fontFamily: "'DM Mono', monospace" }}>
+            {STATUS_ICONS.map((ic, i) => (
+              <span key={i} style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                <span style={{ color: STATUS_COLORS[i], fontSize: "13px" }}>{ic}</span>{STATUS_LABELS[i]}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* GLOBAL STATS */}
-        <div style={{background:"rgba(255,255,255,0.018)",border:"1px solid rgba(255,255,255,0.07)",borderRadius:"16px",padding:"clamp(18px,3vw,28px)",marginBottom:"24px"}}>
-          <div style={{display:"flex",flexWrap:"wrap",gap:"20px",alignItems:"center",justifyContent:"space-between"}}>
-            <div style={{flex:1,minWidth:"240px"}}>
-              <div style={{display:"flex",alignItems:"baseline",gap:"10px",marginBottom:"14px"}}>
-                <span style={{fontSize:"clamp(40px,6vw,56px)",fontWeight:"900",color:"#00ffa3",lineHeight:1,textShadow:"0 0 30px rgba(0,255,163,0.3)"}}>{globalPct}%</span>
-                <div style={{display:"flex",flexDirection:"column",gap:"2px"}}>
-                  <span style={{fontSize:"13px",color:"#555"}}>complete</span>
-                  <span style={{fontSize:"11px",color:"#333"}}>{(solvedCount + reviewCount)} / {totalProblems}</span>
+        {/* ── GLOBAL STATS ── */}
+        <div style={{ background: T.bgCard, border: `1px solid ${T.border}`, borderRadius: "14px", padding: "clamp(16px,3vw,24px)", marginBottom: "20px", backdropFilter: "blur(8px)" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "24px", alignItems: "center", justifyContent: "space-between" }}>
+            <div style={{ flex: 1, minWidth: "220px" }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "14px" }}>
+                <span style={{ fontSize: "clamp(40px,6vw,54px)", fontWeight: "700", color: T.blue, lineHeight: 1, letterSpacing: "-2px" }}>{globalStats.pct}%</span>
+                <div>
+                  <div style={{ fontSize: "13px", color: T.textSecondary, fontWeight: "500" }}>complete</div>
+                  <div style={{ fontSize: "11px", color: T.textMuted, fontFamily: "'DM Mono', monospace" }}>{globalStats.solved + globalStats.review} / {globalStats.total}</div>
                 </div>
               </div>
-              <div style={{height:"8px",background:"rgba(255,255,255,0.05)",borderRadius:"4px",overflow:"hidden"}}>
-                <div style={{height:"100%",width:`${globalPct}%`,background:"linear-gradient(90deg,#00ffa3,#00c8ff)",borderRadius:"4px",transition:"width 0.7s cubic-bezier(.4,0,.2,1)",boxShadow:"0 0 16px rgba(0,255,163,0.35)"}}/>
+              {/* Dual progress bar */}
+              <div style={{ height: "6px", background: "rgba(255,255,255,0.04)", borderRadius: "3px", overflow: "hidden", position: "relative" }}>
+                <div style={{ position: "absolute", left: 0, top: 0, height: "100%", width: `${(globalStats.solved / globalStats.total) * 100}%`, background: `linear-gradient(90deg, ${T.blue}, ${T.blueLight})`, borderRadius: "3px", transition: "width 0.7s cubic-bezier(.4,0,.2,1)" }} />
+                <div style={{ position: "absolute", left: `${(globalStats.solved / globalStats.total) * 100}%`, top: 0, height: "100%", width: `${(globalStats.review / globalStats.total) * 100}%`, background: `linear-gradient(90deg, ${T.orange}, ${T.orangeLight})`, transition: "all 0.7s cubic-bezier(.4,0,.2,1)" }} />
               </div>
-              <div style={{marginTop:"8px",fontSize:"11px",color:"#2a2a3f"}}>{reviewCount} in review · {totalProblems-solvedCount-reviewCount} remaining</div>
+              <div style={{ marginTop: "8px", fontSize: "11px", color: T.textFaint, fontFamily: "'DM Mono', monospace" }}>
+                <span style={{ color: T.blue }}>■</span> solved &nbsp;<span style={{ color: T.orange }}>■</span> review
+              </div>
             </div>
-            <div style={{display:"flex",gap:"12px",flexWrap:"wrap"}}>
-              {[["Solved",solvedCount,"#00ffa3"],["Review",reviewCount,"#ffd93d"],["Pending",totalProblems-solvedCount-reviewCount,"#1e1e2e"]].map(([label,val,color])=>(
-                <div key={label} style={{textAlign:"center",minWidth:"72px",background:"rgba(255,255,255,0.02)",border:`1px solid rgba(${hexToRgb(color)},0.18)`,borderRadius:"12px",padding:"14px 10px"}}>
-                  <div style={{fontSize:"clamp(24px,3vw,34px)",fontWeight:"900",color,lineHeight:1}}>{val}</div>
-                  <div style={{fontSize:"9px",letterSpacing:"2px",color:"#333",textTransform:"uppercase",marginTop:"6px"}}>{label}</div>
+            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+              {[["Solved", globalStats.solved, T.blue, T.blueDim, T.blueBorder], ["Review", globalStats.review, T.orange, T.orangeDim, T.orangeBorder], ["Pending", globalStats.total - globalStats.solved - globalStats.review, T.textMuted, "rgba(255,255,255,0.02)", T.border]].map(([label, val, color, bg, border]) => (
+                <div key={label} style={{ textAlign: "center", minWidth: "72px", background: bg, border: `1px solid ${border}`, borderRadius: "10px", padding: "14px 10px" }}>
+                  <div style={{ fontSize: "clamp(24px,3vw,34px)", fontWeight: "700", color, lineHeight: 1, letterSpacing: "-1px" }}>{val}</div>
+                  <div style={{ fontSize: "10px", letterSpacing: "1.5px", color: T.textMuted, textTransform: "uppercase", marginTop: "5px", fontFamily: "'DM Mono', monospace" }}>{label}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Legend */}
-        <div style={{display:"flex",gap:"20px",marginBottom:"18px",flexWrap:"wrap",fontSize:"11px",color:"#333",letterSpacing:"1px"}}>
-          <span style={{color:"#555"}}>CLICK BUTTON TO CYCLE:</span>
-          {STATUS_ICONS.map((ic,i)=>(
-            <span key={i} style={{display:"flex",alignItems:"center",gap:"6px"}}>
-              <span style={{color:STATUS_COLORS[i],fontSize:"13px"}}>{ic}</span>{STATUS_LABELS[i]}
-            </span>
-          ))}
+        {/* ── TOPIC SELECTOR ── */}
+        <div style={{ display: "flex", gap: "10px", marginBottom: "24px", flexWrap: "wrap" }}>
+          {Object.entries(TOPICS).map(([topic, cfg]) => {
+            const ts  = topicStats[topic] || { total: 0, solved: 0, review: 0 };
+            const pct = ts.total ? Math.round(((ts.solved + ts.review) / ts.total) * 100) : 0;
+            const isActive = activeTopic === topic;
+            return (
+              <button key={topic} className="topic-btn"
+                onClick={() => { setActiveTopic(topic); setActiveCategory(null); setSearch(""); setFilterStatus("all"); }}
+                style={{ background: isActive ? (cfg.color === T.blue ? T.blueDim : T.orangeDim) : T.bgCard, border: `1px solid ${isActive ? cfg.color : T.border}`, borderRadius: "12px", padding: "14px 20px", cursor: "pointer", color: isActive ? cfg.color : T.textMuted, transition: "all 0.2s", minWidth: 170, textAlign: "left" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+                  <span style={{ fontSize: "16px", opacity: 0.9 }}>{cfg.icon}</span>
+                  <span style={{ fontSize: "13px", fontWeight: "600", color: isActive ? cfg.color : T.textSecondary }}>{topic}</span>
+                </div>
+                <div style={{ height: "2px", background: "rgba(255,255,255,0.05)", borderRadius: "1px", overflow: "hidden", marginBottom: "6px" }}>
+                  <div style={{ height: "100%", width: `${pct}%`, background: cfg.color, transition: "width 0.4s ease", borderRadius: "1px" }} />
+                </div>
+                <div style={{ fontSize: "10px", color: isActive ? cfg.color : T.textFaint, fontFamily: "'DM Mono', monospace" }}>{ts.solved}/{ts.total} · {pct}%</div>
+              </button>
+            );
+          })}
         </div>
 
-        {/* MAIN LAYOUT */}
-        <div style={{display:"grid",gridTemplateColumns:activeCategory?"min(300px,34%) 1fr":"1fr",gap:"18px",alignItems:"start"}}>
-
-          {/* CATEGORY LIST */}
-          <div>
-            {!activeCategory && <div style={{fontSize:"10px",letterSpacing:"3px",color:"#2a2a3f",textTransform:"uppercase",marginBottom:"12px"}}>Select a category to view problems</div>}
-            <div style={{display:"flex",flexDirection:"column",gap:"5px"}}>
-              {categories.map((cat,i)=>{
-                const {solved,review,total,pct} = getCatStats(cat);
-                const color = CATEGORY_COLORS[i%CATEGORY_COLORS.length];
-                const isActive = activeCategory===cat;
-                const done = solved===total;
-                return (
-                  <button key={cat} className="catbtn"
-                    onClick={()=>{setActiveCategory(isActive?null:cat);setSearch("");setFilterStatus("all");}}
-                    style={{background:isActive?`rgba(${hexToRgb(color)},0.09)`:"rgba(255,255,255,0.015)",border:`1px solid ${isActive?color:"rgba(255,255,255,0.055)"}`,borderRadius:"10px",padding:"11px 14px",cursor:"pointer",textAlign:"left",transition:"all 0.18s",color:"#ddd",boxShadow:isActive?`0 0 18px rgba(${hexToRgb(color)},0.12)`:"none"}}
-                  >
-                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"6px"}}>
-                      <span style={{fontSize:"12px",fontWeight:"700",color:isActive?color:"#bbb"}}>{cat}{done?" ✓":""}</span>
-                      <span style={{fontSize:"11px",color,fontWeight:"700"}}>{pct}%</span>
-                    </div>
-                    <div style={{height:"2px",background:"rgba(255,255,255,0.05)",borderRadius:"1px",overflow:"hidden",marginBottom:"6px"}}>
-                      <div style={{height:"100%",width:`${pct}%`,background:color,borderRadius:"1px",transition:"width 0.4s ease",boxShadow:`0 0 6px ${color}`}}/>
-                    </div>
-                    <div style={{display:"flex",gap:"12px"}}>
-                      <span style={{fontSize:"10px",color:"#00ffa3"}}>✓ {solved}</span>
-                      {review>0&&<span style={{fontSize:"10px",color:"#ffd93d"}}>↻ {review}</span>}
-                      <span style={{fontSize:"10px",color:"#2a2a3f"}}>/ {total}</span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* PROBLEM PANEL */}
-          {activeCategory && (
-            <div style={{animation:"fin 0.22s ease"}}>
-              <div style={{marginBottom:"14px"}}>
-                <div style={{display:"flex",alignItems:"center",gap:"12px",marginBottom:"14px",flexWrap:"wrap"}}>
-                  <h2 style={{fontSize:"clamp(16px,2.5vw,20px)",fontWeight:"900",color:activeCatColor,textShadow:`0 0 20px rgba(${hexToRgb(activeCatColor)},0.4)`}}>{activeCategory}</h2>
-                  <span style={{fontSize:"11px",color:"#2a2a3f"}}>{DP_DATA[activeCategory].length} problems</span>
-                  <button onClick={()=>setActiveCategory(null)} style={{marginLeft:"auto",background:"transparent",border:"1px solid rgba(255,255,255,0.07)",borderRadius:"6px",color:"#444",cursor:"pointer",padding:"4px 12px",fontSize:"11px",fontFamily:"Courier New"}}>✕ close</button>
+        {/* ══════════════════ DYNAMIC PROGRAMMING ══════════════════ */}
+        {activeTopic === "Dynamic Programming" && (
+          <div style={{ display: "grid", gridTemplateColumns: activeCategory ? "min(300px,32%) 1fr" : "1fr", gap: "18px", alignItems: "start" }}>
+            {/* Category list */}
+            <div>
+              {!activeCategory && (
+                <div style={{ fontSize: "11px", color: T.textMuted, marginBottom: "14px", fontFamily: "'DM Mono', monospace", letterSpacing: "1px" }}>
+                  Select a category →
                 </div>
-                <div style={{display:"flex",gap:"8px",flexWrap:"wrap"}}>
-                  <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="search problems..." style={{background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.07)",borderRadius:"8px",padding:"8px 14px",color:"#ddd",fontFamily:"Courier New",fontSize:"12px",flex:1,minWidth:"140px",transition:"border-color 0.2s"}}/>
-                  {["all","0","1","2"].map(f=>(
-                    <button key={f} onClick={()=>setFilterStatus(f)} style={{padding:"8px 12px",borderRadius:"8px",fontSize:"10px",cursor:"pointer",fontFamily:"Courier New",letterSpacing:"1.5px",background:filterStatus===f?activeCatColor:"rgba(255,255,255,0.03)",border:`1px solid ${filterStatus===f?activeCatColor:"rgba(255,255,255,0.07)"}`,color:filterStatus===f?"#000":"#555",transition:"all 0.15s",fontWeight:filterStatus===f?"700":"400"}}>
-                      {f==="all"?"ALL":STATUS_LABELS[Number(f)].toUpperCase()}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div style={{display:"flex",flexDirection:"column",gap:"4px"}}>
-                {filteredProblems.length===0&&(
-                  <div style={{padding:"48px",textAlign:"center",color:"#1e1e2e",fontSize:"12px",border:"1px dashed rgba(255,255,255,0.05)",borderRadius:"10px"}}>no problems match filter</div>
-                )}
-                {filteredProblems.map((slug,idx)=>{
-                  const status = progress[slug]||0;
-                  const sc = STATUS_COLORS[status];
+              )}
+              <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                {Object.keys(DP_DATA).map((cat, i) => {
+                  const { solved, review, total, pct } = getDPCatStats(cat);
+                  const color    = DP_CAT_COLORS[i % DP_CAT_COLORS.length];
+                  const isActive = activeCategory === cat;
+                  const done     = solved === total;
                   return (
-                    <div key={slug} className="probrow" style={{display:"flex",alignItems:"center",gap:"12px",background:"rgba(255,255,255,0.018)",border:`1px solid ${status?`rgba(${hexToRgb(sc)},0.2)`:"rgba(255,255,255,0.04)"}`,borderRadius:"8px",padding:"10px 14px",transition:"all 0.12s"}}>
-                      <button onClick={()=>cycleStatus(slug)} title="Click to cycle status" style={{width:"30px",height:"30px",borderRadius:"7px",flexShrink:0,background:status?`rgba(${hexToRgb(sc)},0.12)`:"rgba(255,255,255,0.03)",border:`2px solid ${sc}`,color:sc,fontSize:"15px",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",transition:"all 0.15s",boxShadow:status?`0 0 10px rgba(${hexToRgb(sc)},0.3)`:"none",fontFamily:"Courier New"}}>
-                        {STATUS_ICONS[status]}
-                      </button>
-                      <span style={{fontSize:"10px",color:"#222",minWidth:"22px",flexShrink:0}}>{String(idx+1).padStart(2,"0")}</span>
-                      <div style={{flex:1,minWidth:0}}>
-                        <a href={getLCUrl(slug)} target="_blank" rel="noopener noreferrer" className="lclink"
-                          style={{color:status===1?"#00ffa3":status===2?"#ffd93d":"#777",textDecoration:"none",fontSize:"13px",fontFamily:"Courier New",fontWeight:status===1?"600":"400",display:"block",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",transition:"color 0.12s"}}>
-                          {slugToTitle(slug)}
-                        </a>
+                    <button key={cat} className="cat-btn"
+                      onClick={() => { setActiveCategory(isActive ? null : cat); setSearch(""); setFilterStatus("all"); }}
+                      style={{ background: isActive ? `rgba(77,159,255,0.07)` : T.bgCard, border: `1px solid ${isActive ? color : T.border}`, borderRadius: "9px", padding: "10px 14px", cursor: "pointer", textAlign: "left", transition: "all 0.15s", color: T.textPrimary }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "5px" }}>
+                        <span style={{ fontSize: "12px", fontWeight: "600", color: isActive ? color : T.textSecondary }}>{cat}{done ? " ✓" : ""}</span>
+                        <span style={{ fontSize: "10px", color, fontFamily: "'DM Mono', monospace", fontWeight: "500" }}>{pct}%</span>
                       </div>
-                      <span style={{fontSize:"9px",letterSpacing:"1.5px",padding:"3px 8px",borderRadius:"4px",flexShrink:0,background:`rgba(${hexToRgb(sc)},0.08)`,color:sc,textTransform:"uppercase"}}>
-                        {STATUS_LABELS[status]}
-                      </span>
-                    </div>
+                      <div style={{ height: "2px", background: "rgba(255,255,255,0.04)", borderRadius: "1px", overflow: "hidden", marginBottom: "5px" }}>
+                        <div style={{ height: "100%", width: `${pct}%`, background: color, borderRadius: "1px", transition: "width 0.4s ease" }} />
+                      </div>
+                      <div style={{ display: "flex", gap: "10px" }}>
+                        <span style={{ fontSize: "10px", color: T.blue, fontFamily: "'DM Mono', monospace" }}>✓ {solved}</span>
+                        {review > 0 && <span style={{ fontSize: "10px", color: T.orange, fontFamily: "'DM Mono', monospace" }}>↻ {review}</span>}
+                        <span style={{ fontSize: "10px", color: T.textFaint, fontFamily: "'DM Mono', monospace" }}>/ {total}</span>
+                      </div>
+                    </button>
                   );
                 })}
               </div>
             </div>
-          )}
-        </div>
 
-        {/* FOOTER */}
-        <div style={{marginTop:"48px",borderTop:"1px solid rgba(255,255,255,0.04)",paddingTop:"20px",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"12px"}}>
-          <span style={{fontSize:"10px",color:"#1e1e2e",letterSpacing:"3px"}}>DP GRIND — PERSONAL TRACKER · {new Date().getFullYear()}</span>
-          <button onClick={()=>{if(window.confirm("Reset ALL progress? This cannot be undone."))setProgress({});}} style={{background:"transparent",border:"1px solid rgba(255,60,60,0.12)",borderRadius:"6px",color:"rgba(255,60,60,0.3)",cursor:"pointer",padding:"6px 14px",fontSize:"10px",letterSpacing:"2px",fontFamily:"Courier New",transition:"all 0.15s"}}>
+            {/* Problem panel */}
+            {activeCategory && (
+              <div style={{ animation: "fadeUp 0.22s ease" }}>
+                <div style={{ marginBottom: "16px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px", flexWrap: "wrap" }}>
+                    <h2 style={{ fontSize: "clamp(15px,2.2vw,19px)", fontWeight: "700", color: dpCatColor, letterSpacing: "-0.5px" }}>{activeCategory}</h2>
+                    <span style={{ fontSize: "11px", color: T.textMuted, fontFamily: "'DM Mono', monospace" }}>{DP_DATA[activeCategory].length} problems</span>
+                    <button onClick={() => setActiveCategory(null)} style={{ marginLeft: "auto", background: "transparent", border: `1px solid ${T.border}`, borderRadius: "6px", color: T.textMuted, cursor: "pointer", padding: "4px 12px", fontSize: "11px", fontFamily: "'DM Mono', monospace", transition: "all 0.15s" }}>✕ close</button>
+                  </div>
+                  <SearchBar search={search} setSearch={setSearch} filterStatus={filterStatus} setFilterStatus={setFilterStatus} accentColor={dpCatColor} />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
+                  {filteredDP.length === 0 && <EmptyState />}
+                  {filteredDP.map((slug, idx) => (
+                    <DPProblemRow key={slug} slug={slug} idx={idx}
+                      status={progress[slug] || 0} note={getNote(slug)}
+                      onCycle={() => cycleStatus(slug)} onNote={() => openNote(slug)} />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ══════════════════ STRUCTURED (LL / BT) ══════════════════ */}
+        {activeTopic !== "Dynamic Programming" && (
+          <div style={{ display: "grid", gridTemplateColumns: "min(250px,28%) 1fr", gap: "18px", alignItems: "start" }}>
+
+            {/* Sidebar */}
+            <div style={{ position: "sticky", top: 20 }}>
+              {/* Topic stats */}
+              {(() => {
+                const ts  = topicStats[activeTopic] || {};
+                const pct = ts.total ? Math.round(((ts.solved + ts.review) / ts.total) * 100) : 0;
+                const col = topicColor;
+                return (
+                  <div style={{ background: T.bgCard, border: `1px solid ${T.border}`, borderRadius: "12px", padding: "16px", marginBottom: "16px" }}>
+                    <div style={{ fontSize: "10px", letterSpacing: "3px", color: col, textTransform: "uppercase", marginBottom: "8px", fontFamily: "'DM Mono', monospace", opacity: 0.8 }}>{activeTopic}</div>
+                    <div style={{ fontSize: "34px", fontWeight: "700", color: col, lineHeight: 1, marginBottom: "10px", letterSpacing: "-1px" }}>{pct}%</div>
+                    <div style={{ height: "4px", background: "rgba(255,255,255,0.04)", borderRadius: "2px", overflow: "hidden", marginBottom: "10px" }}>
+                      <div style={{ height: "100%", width: `${pct}%`, background: col, transition: "width 0.5s ease" }} />
+                    </div>
+                    <div style={{ fontSize: "11px", color: T.textMuted, fontFamily: "'DM Mono', monospace" }}>
+                      <span style={{ color: T.blue }}>✓</span> {ts.solved} &nbsp;<span style={{ color: T.orange }}>↻</span> {ts.review} &nbsp;/ {ts.total}
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* Section nav */}
+              <div style={{ fontSize: "9px", letterSpacing: "3px", color: T.textFaint, textTransform: "uppercase", marginBottom: "8px", paddingLeft: "4px", fontFamily: "'DM Mono', monospace" }}>SECTIONS</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "2px", maxHeight: "44vh", overflowY: "auto", marginBottom: "16px" }}>
+                {(STRUCTURED_DATA[activeTopic]?.sections || []).map(sec => {
+                  const secSolved = sec.problems.filter(p => (progress[p.id] || 0) === 1).length;
+                  const secTotal  = sec.problems.length;
+                  const isActive  = activeSection === sec.title;
+                  return (
+                    <button key={sec.title} className="sec-nav-btn"
+                      onClick={() => { setActiveSection(sec.title); document.getElementById("sec-" + sec.title.replace(/\W/g, "-"))?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
+                      style={{ background: isActive ? "rgba(255,255,255,0.04)" : "transparent", border: "none", borderRadius: "6px", padding: "7px 10px", cursor: "pointer", textAlign: "left", display: "flex", justifyContent: "space-between", alignItems: "center", color: isActive ? T.textSecondary : T.textMuted, fontSize: "11px", transition: "all 0.15s" }}>
+                      <span style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", paddingRight: 8 }}>{sec.title}</span>
+                      {secTotal > 0 && <span style={{ fontSize: "10px", color: T.textFaint, fontFamily: "'DM Mono', monospace", flexShrink: 0 }}>{secSolved}/{secTotal}</span>}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Filter */}
+              <div style={{ fontSize: "9px", letterSpacing: "3px", color: T.textFaint, textTransform: "uppercase", marginBottom: "8px", paddingLeft: "4px", fontFamily: "'DM Mono', monospace" }}>FILTER</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
+                {["all", "0", "1", "2"].map(f => {
+                  const isActive = filterStatus === f;
+                  return (
+                    <button key={f} className="filter-btn" onClick={() => setFilterStatus(f)}
+                      style={{ padding: "8px 12px", borderRadius: "7px", fontSize: "12px", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", background: isActive ? (f === "1" ? T.blueDim : f === "2" ? T.orangeDim : "rgba(255,255,255,0.05)") : "transparent", border: `1px solid ${isActive ? (f === "1" ? T.blue : f === "2" ? T.orange : T.borderMed) : T.border}`, color: isActive ? (f === "1" ? T.blue : f === "2" ? T.orange : T.textSecondary) : T.textMuted, textAlign: "left", transition: "all 0.15s", fontWeight: isActive ? "600" : "400" }}>
+                      {f === "all" ? "All Problems" : STATUS_LABELS[Number(f)]}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Main */}
+            <div style={{ animation: "fadeUp 0.22s ease" }}>
+              <div style={{ marginBottom: "20px" }}>
+                <SearchBar search={search} setSearch={setSearch} filterStatus={filterStatus} setFilterStatus={setFilterStatus} accentColor={topicColor} hideFilterButtons />
+              </div>
+              {filteredSections.map(sec => (
+                <div key={sec.title} id={"sec-" + sec.title.replace(/\W/g, "-")} style={{ marginBottom: "28px", animation: "fadeUp 0.3s ease" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px", paddingBottom: "8px", borderBottom: `1px solid ${T.border}` }}>
+                    <h2 style={{ fontSize: "11px", fontWeight: "600", color: T.textMuted, textTransform: "uppercase", letterSpacing: "2px", flex: 1, fontFamily: "'DM Mono', monospace" }}>{sec.title}</h2>
+                    {sec.note && <span style={{ fontSize: "10px", color: T.orange, background: T.orangeDim, border: `1px solid ${T.orangeBorder}`, borderRadius: "4px", padding: "2px 8px", fontFamily: "'DM Mono', monospace" }}>{sec.note}</span>}
+                    {sec.problems.length > 0 && (
+                      <span style={{ fontSize: "10px", color: T.textFaint, fontFamily: "'DM Mono', monospace" }}>
+                        {sec.problems.filter(p => (progress[p.id] || 0) === 1).length}/{sec.problems.length}
+                      </span>
+                    )}
+                  </div>
+                  {sec.problems.length === 0 && <div style={{ color: T.textFaint, fontSize: "12px", fontStyle: "italic", padding: "4px 0", fontFamily: "'DM Mono', monospace" }}>No problems listed</div>}
+                  <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
+                    {sec.problems.map((p, idx) => {
+                      const status = progress[p.id] || 0;
+                      const note   = getNote(p.id);
+                      const dc     = DIFF_STYLE[p.difficulty] || DIFF_STYLE.Medium;
+                      const sc     = STATUS_COLORS[status];
+                      return (
+                        <div key={p.id} className="prob-row"
+                          style={{ display: "flex", alignItems: "center", gap: "10px", background: T.bgCard, border: `1px solid ${status ? `rgba(${status === 1 ? "77,159,255" : "255,140,66"},0.15)` : T.border}`, borderRadius: "8px", padding: "9px 12px", transition: "all 0.12s", animation: "slideIn 0.2s ease both", animationDelay: `${idx * 15}ms` }}>
+                          <button onClick={() => cycleStatus(p.id)}
+                            style={{ width: "26px", height: "26px", borderRadius: "6px", flexShrink: 0, background: status ? `rgba(${status === 1 ? "77,159,255" : "255,140,66"},0.1)` : "rgba(255,255,255,0.03)", border: `1.5px solid ${sc}`, color: sc, fontSize: "13px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.15s", fontFamily: "'DM Mono', monospace" }}>
+                            {STATUS_ICONS[status]}
+                          </button>
+                          <span style={{ fontSize: "10px", color: T.textFaint, minWidth: "20px", flexShrink: 0, fontFamily: "'DM Mono', monospace" }}>{String(idx + 1).padStart(2, "0")}</span>
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <a href={getLCUrl(p.slug)} target="_blank" rel="noopener noreferrer" className="lc-link"
+                              style={{ color: status === 1 ? T.blue : status === 2 ? T.orange : T.textSecondary, textDecoration: "none", fontSize: "13px", fontWeight: status === 1 ? "500" : "400", display: "flex", alignItems: "center", gap: "6px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", transition: "color 0.12s" }}>
+                              {p.title}
+                              {p.important && <span style={{ fontSize: "9px", background: "rgba(255,69,58,0.1)", color: "#ff453a", border: "1px solid rgba(255,69,58,0.25)", borderRadius: "3px", padding: "1px 5px", letterSpacing: "1px", fontWeight: "700", flexShrink: 0, fontFamily: "'DM Mono', monospace" }}>IMP</span>}
+                            </a>
+                          </div>
+                          {note && <span style={{ fontSize: "12px", flexShrink: 0 }} title={note}>📝</span>}
+                          <span style={{ fontSize: "9px", padding: "2px 7px", borderRadius: "4px", flexShrink: 0, background: dc.bg, color: dc.color, border: `1px solid ${dc.border}`, letterSpacing: "0.5px", fontWeight: "600", fontFamily: "'DM Mono', monospace" }}>{p.difficulty}</span>
+                          {p.note && <span title={p.note} style={{ fontSize: "12px", color: T.textMuted, cursor: "help", flexShrink: 0 }}>ℹ</span>}
+                          <button className="note-btn" onClick={() => openNote(p.id)}
+                            style={{ background: "transparent", border: "none", color: T.textFaint, cursor: "pointer", fontSize: "13px", padding: "2px 4px", transition: "color 0.15s", flexShrink: 0 }}>✎</button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── FOOTER ── */}
+        <div style={{ marginTop: "48px", borderTop: `1px solid ${T.border}`, paddingTop: "20px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
+          <span style={{ fontSize: "10px", color: T.textFaint, letterSpacing: "2px", fontFamily: "'DM Mono', monospace" }}>DSA TRACKER · {new Date().getFullYear()}</span>
+          <button className="reset-btn" onClick={() => { if (window.confirm("Reset ALL progress? This cannot be undone.")) setProgress({}); }}
+            style={{ background: "transparent", border: `1px solid rgba(255,60,60,0.1)`, borderRadius: "6px", color: "rgba(255,60,60,0.25)", cursor: "pointer", padding: "6px 14px", fontSize: "10px", letterSpacing: "1.5px", fontFamily: "'DM Mono', monospace", transition: "all 0.15s" }}>
             RESET ALL
           </button>
         </div>
       </div>
+
+      {/* ── NOTE MODAL ── */}
+      {noteModal && (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.7)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, backdropFilter: "blur(8px)" }}
+          onClick={() => setNoteModal(null)}>
+          <div style={{ background: T.bgPanel, border: `1px solid ${T.borderMed}`, borderRadius: "14px", padding: "24px", width: "460px", maxWidth: "90vw", boxShadow: "0 24px 64px rgba(0,0,0,0.6)" }}
+            onClick={e => e.stopPropagation()}>
+            <div style={{ fontSize: "11px", letterSpacing: "3px", color: T.textMuted, textTransform: "uppercase", marginBottom: "14px", fontFamily: "'DM Mono', monospace" }}>Personal Note</div>
+            <textarea value={noteText} onChange={e => setNoteText(e.target.value)} rows={6}
+              placeholder="Write your approach, key insights, edge cases..."
+              style={{ width: "100%", background: T.bgInset, border: `1px solid ${T.border}`, borderRadius: "8px", padding: "12px", color: T.textPrimary, fontSize: "13px", fontFamily: "'DM Mono', monospace", resize: "vertical", boxSizing: "border-box", transition: "all 0.2s" }} />
+            <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end", marginTop: "14px" }}>
+              <button onClick={() => setNoteModal(null)}
+                style={{ background: "transparent", border: `1px solid ${T.border}`, color: T.textMuted, padding: "8px 18px", borderRadius: "7px", cursor: "pointer", fontSize: "12px", fontFamily: "'DM Sans', sans-serif" }}>Cancel</button>
+              <button onClick={saveNote}
+                style={{ background: T.blueDim, border: `1px solid ${T.blue}`, color: T.blue, padding: "8px 18px", borderRadius: "7px", cursor: "pointer", fontSize: "12px", fontWeight: "600", fontFamily: "'DM Sans', sans-serif", transition: "all 0.15s" }}>Save Note</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Sub-components ────────────────────────────────────────────────────────────
+function SearchBar({ search, setSearch, filterStatus, setFilterStatus, accentColor, hideFilterButtons }) {
+  return (
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+      <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search problems..."
+        style={{ background: T.bgCard, border: `1px solid ${T.border}`, borderRadius: "8px", padding: "9px 14px", color: T.textPrimary, fontFamily: "'DM Sans', sans-serif", fontSize: "13px", flex: 1, minWidth: "140px", transition: "all 0.2s", '::placeholder': { color: T.textMuted } }} />
+      {!hideFilterButtons && ["all", "0", "1", "2"].map(f => {
+        const isActive = filterStatus === f;
+        return (
+          <button key={f} onClick={() => setFilterStatus(f)}
+            style={{ padding: "9px 14px", borderRadius: "8px", fontSize: "11px", cursor: "pointer", fontFamily: "'DM Mono', monospace", background: isActive ? accentColor : T.bgCard, border: `1px solid ${isActive ? accentColor : T.border}`, color: isActive ? "#000" : T.textMuted, transition: "all 0.15s", fontWeight: isActive ? "700" : "400", letterSpacing: "0.5px" }}>
+            {f === "all" ? "ALL" : STATUS_LABELS[Number(f)].toUpperCase()}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function DPProblemRow({ slug, idx, status, note, onCycle, onNote }) {
+  const sc = STATUS_COLORS[status];
+  return (
+    <div className="prob-row"
+      style={{ display: "flex", alignItems: "center", gap: "10px", background: T.bgCard, border: `1px solid ${status ? `rgba(${status === 1 ? "77,159,255" : "255,140,66"},0.15)` : T.border}`, borderRadius: "8px", padding: "9px 12px", transition: "all 0.12s", animation: "slideIn 0.2s ease both", animationDelay: `${idx * 12}ms` }}>
+      <button onClick={onCycle}
+        style={{ width: "26px", height: "26px", borderRadius: "6px", flexShrink: 0, background: status ? `rgba(${status === 1 ? "77,159,255" : "255,140,66"},0.1)` : "rgba(255,255,255,0.03)", border: `1.5px solid ${sc}`, color: sc, fontSize: "13px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.15s", fontFamily: "'DM Mono', monospace" }}>
+        {STATUS_ICONS[status]}
+      </button>
+      <span style={{ fontSize: "10px", color: T.textFaint, minWidth: "20px", flexShrink: 0, fontFamily: "'DM Mono', monospace" }}>{String(idx + 1).padStart(2, "0")}</span>
+      <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", gap: "8px" }}>
+        <a href={getLCUrl(slug)} target="_blank" rel="noopener noreferrer" className="lc-link"
+          style={{ color: status === 1 ? T.blue : status === 2 ? T.orange : T.textSecondary, textDecoration: "none", fontSize: "13px", fontWeight: status === 1 ? "500" : "400", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", transition: "color 0.12s" }}>
+          {slugToTitle(slug)}
+        </a>
+        {note && <span style={{ fontSize: "11px", flexShrink: 0 }} title={note}>📝</span>}
+      </div>
+      <button onClick={onNote} className="note-btn"
+        style={{ background: "transparent", border: "none", color: T.textFaint, cursor: "pointer", fontSize: "13px", padding: "2px 4px", transition: "color 0.15s", flexShrink: 0 }}>✎</button>
+      <span style={{ fontSize: "9px", letterSpacing: "1px", padding: "2px 8px", borderRadius: "4px", flexShrink: 0, background: status === 1 ? T.blueDim : status === 2 ? T.orangeDim : "rgba(255,255,255,0.03)", color: sc, border: `1px solid ${status === 1 ? T.blueBorder : status === 2 ? T.orangeBorder : T.border}`, fontFamily: "'DM Mono', monospace", textTransform: "uppercase" }}>
+        {STATUS_LABELS[status]}
+      </span>
+    </div>
+  );
+}
+
+function EmptyState() {
+  return (
+    <div style={{ padding: "48px", textAlign: "center", color: T.textFaint, fontSize: "12px", border: `1px dashed ${T.border}`, borderRadius: "10px", fontFamily: "'DM Mono', monospace" }}>
+      No problems match filter
     </div>
   );
 }
