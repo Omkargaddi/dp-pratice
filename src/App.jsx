@@ -102,9 +102,11 @@ const STRUCTURED_DATA = {
       ]},
     ],
   },
-  "Binary Tree": {
-    sections: [
-      { title: "Binary Tree Problems", problems: [
+"Binary Tree": {
+  sections: [
+    { 
+      title: "Binary Tree Problems", 
+      problems: [
         { id: "bt-1",  title: "Invert Binary Tree", slug: "invert-binary-tree", difficulty: "Easy" },
         { id: "bt-2",  title: "Convert Sorted Array to Binary Search Tree", slug: "convert-sorted-array-to-binary-search-tree", difficulty: "Easy" },
         { id: "bt-3",  title: "Count Complete Tree Nodes", slug: "count-complete-tree-nodes", difficulty: "Medium" },
@@ -126,13 +128,34 @@ const STRUCTURED_DATA = {
         { id: "bt-19", title: "Trim a Binary Search Tree", slug: "trim-a-binary-search-tree", difficulty: "Medium" },
         { id: "bt-20", title: "Distribute Coins in Binary Tree", slug: "distribute-coins-in-binary-tree", difficulty: "Medium" },
         { id: "bt-21", title: "Binary Search Tree to Greater Sum Tree", slug: "binary-search-tree-to-greater-sum-tree", difficulty: "Medium" },
+
         { id: "bt-22", title: "Serialize and Deserialize Binary Tree", slug: "serialize-and-deserialize-binary-tree", difficulty: "Hard" },
         { id: "bt-23", title: "Binary Tree Cameras", slug: "binary-tree-cameras", difficulty: "Hard" },
         { id: "bt-24", title: "Binary Tree Maximum Path Sum", slug: "binary-tree-maximum-path-sum", difficulty: "Hard" },
         { id: "bt-25", title: "Maximum Sum BST in Binary Tree", slug: "maximum-sum-bst-in-binary-tree", difficulty: "Hard" },
-      ]},
-    ],
-  },
+
+        { id: "bt-26", title: "Maximum Depth of Binary Tree", slug: "maximum-depth-of-binary-tree", difficulty: "Easy" },
+        { id: "bt-27", title: "Balanced Binary Tree", slug: "balanced-binary-tree", difficulty: "Easy" },
+        { id: "bt-28", title: "Binary Tree Level Order Traversal II", slug: "binary-tree-level-order-traversal-ii", difficulty: "Easy" },
+
+        { id: "bt-29", title: "Construct Binary Tree from Preorder and Inorder Traversal", slug: "construct-binary-tree-from-preorder-and-inorder-traversal", difficulty: "Medium" },
+        { id: "bt-30", title: "Convert Sorted List to Binary Search Tree", slug: "convert-sorted-list-to-binary-search-tree", difficulty: "Medium" },
+        { id: "bt-31", title: "Binary Tree Right Side View", slug: "binary-tree-right-side-view", difficulty: "Medium" },
+        { id: "bt-32", title: "Lowest Common Ancestor of a Binary Tree", slug: "lowest-common-ancestor-of-a-binary-tree", difficulty: "Medium" },
+        { id: "bt-33", title: "Check Completeness of a Binary Tree", slug: "check-completeness-of-a-binary-tree", difficulty: "Medium" },
+        { id: "bt-34", title: "Vertical Order Traversal of a Binary Tree", slug: "vertical-order-traversal-of-a-binary-tree", difficulty: "Hard" },
+        { id: "bt-35", title: "Recover Binary Search Tree", slug: "recover-binary-search-tree", difficulty: "Hard" },
+
+        { id: "bt-36", title: "Recover a Tree From Preorder Traversal", slug: "recover-a-tree-from-preorder-traversal", difficulty: "Hard" },
+
+        { id: "bt-37", title: "Validate Binary Tree Nodes", slug: "validate-binary-tree-nodes", difficulty: "Medium" },
+        { id: "bt-38", title: "Linked List in Binary Tree", slug: "linked-list-in-binary-tree", difficulty: "Medium" },
+        { id: "bt-39", title: "Balance a Binary Search Tree", slug: "balance-a-binary-search-tree", difficulty: "Medium" },
+        { id: "bt-40", title: "Kth Largest Sum in a Binary Tree", slug: "kth-largest-sum-in-a-binary-tree", difficulty: "Medium" }
+      ]
+    }
+  ]
+}
 };
 
 // ─── THEME ────────────────────────────────────────────────────────────────────
